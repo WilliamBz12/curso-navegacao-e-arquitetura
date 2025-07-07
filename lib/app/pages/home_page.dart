@@ -26,8 +26,8 @@ class HomePage extends StatelessWidget {
                     width: double.infinity,
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
+                      onPressed: () async {
+                        final result = await Navigator.push<String?>(
                           context,
                           MaterialPageRoute(
                             builder: (context) {
@@ -35,6 +35,15 @@ class HomePage extends StatelessWidget {
                             },
                           ),
                         );
+
+                        if (result != null) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Usuário acessou por $result'),
+                            ),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppConfig.buttonColor,
