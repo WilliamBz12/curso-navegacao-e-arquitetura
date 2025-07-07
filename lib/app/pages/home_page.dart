@@ -27,13 +27,9 @@ class HomePage extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () async {
-                        final result = await Navigator.push<String?>(
+                        final result = await Navigator.pushNamed(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return TimerPage(timerType: TimerType.focus);
-                            },
-                          ),
+                          '/timer',
                         );
 
                         if (result != null) {
@@ -68,14 +64,7 @@ class HomePage extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return TimerPage(timerType: TimerType.shortBreak);
-                            },
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/timer');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppConfig.buttonColor,
@@ -100,14 +89,7 @@ class HomePage extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return TimerPage(timerType: TimerType.longBreak);
-                            },
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/timer');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppConfig.buttonColor,
