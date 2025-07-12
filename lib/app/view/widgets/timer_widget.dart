@@ -115,6 +115,45 @@ class _TimerWidgetState extends State<TimerWidget> {
               },
             ),
           ),
+          SizedBox(height: 20),
+          ValueListenableBuilder(
+            valueListenable: isPausedNotifier,
+            builder: (context, value, child) {
+              return ListenableBuilder(
+                listenable: timerViewModel,
+                builder: (context, child) {
+                  if (!timerViewModel.isPlaying) return SizedBox.shrink();
+
+                  return SizedBox(
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        isPausedNotifier.value = !value;
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            value ? Icons.play_circle : Icons.pause,
+                            color: Colors.green,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            value ? "Continuar" : "Pausar",
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: AppConfig.backgroundColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ],
       ),
     );
